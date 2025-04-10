@@ -9,7 +9,7 @@
 **PosterMaker** is supported by the [Alimama Creative](https://huggingface.co/alimama-creative) team. 
 
 
-🎉 **PosterMaker** Release Schedule Announcement:
+🎉 Release Schedule Announcement:
 
 - **Inference Code & Demo**: Expected by April 15th, 2025
 - **Training Code**: Expected by April 30th, 2025
