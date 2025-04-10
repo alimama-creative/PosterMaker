@@ -2,7 +2,7 @@
   
 # PosterMaker: Towards High-Quality Product Poster Generation with Accurate Text Rendering  [![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-md-dark.svg)](https://poster-maker.github.io)
 
-<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'> </a><a href='asset/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/eafn/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
+<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='asset/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/eafn/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
 
 
 <img src="https://github.com/alimama-creative/FLUX-Controlnet-Inpainting/blob/main/images/alibabaalimama.png" height=80>
