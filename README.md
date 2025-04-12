@@ -1,5 +1,5 @@
 <div align="center">
-<img src="asset/images/postermaker_logo.png" height=60>
+<img src="asset/images/postermaker_logo.png" height="80" style="display:block; margin-bottom:-30px;">
 
 # PosterMaker: Towards High-Quality Product Poster Generation with Accurate Text Rendering  [![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-md-dark.svg)](https://poster-maker.github.io)
 
