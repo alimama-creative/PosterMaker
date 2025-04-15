@@ -21,10 +21,14 @@
 
 ## ⏰ Release Schedule Announcement
 
-- [ ] **Inference Code & Demo**: Expected by April 15th, 2025
+- [ ] **Inference Code & Demo**: Expected by ~~April 15th, 2025~~ April 18th, 2025
 - [ ] **Training Code**: Expected by April 30th, 2025
 
 We are working diligently to ensure the quality of our releases. We greatly appreciate your continued interest and support in our project. Please stay tuned for these upcoming releases.
+
+**UPDATE**: Due to the company's strict review process, the release day will be delayed by three days. We are very sorry about this. 
+Once the process is completed, we will release it immediately. Thank you for your patience!
+
 
 ## Citation
 If you find PosterMaker useful for your research and applications, please cite using this BibTeX:
