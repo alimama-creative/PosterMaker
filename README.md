@@ -22,8 +22,7 @@
 ## ⏰ Release Schedule Announcement
 
 [✅] **Inference Code & Demo**: Expected by ~~April 15th, 2025~~ April 18th, 2025
-
-[ ] **Training Code**: Expected by April 30th, 2025
+[  ] **Training Code**: Expected by April 30th, 2025
 
 We are working diligently to ensure the quality of our releases. We greatly appreciate your continued interest and support in our project. Please stay tuned for these upcoming releases.
 
