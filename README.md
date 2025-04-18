@@ -3,7 +3,7 @@
 
 # PosterMaker: Towards High-Quality Product Poster Generation with Accurate Text Rendering  [![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-md-dark.svg)](https://poster-maker.github.io)
 
-<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='assets/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/eafn/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
+<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='assets/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/alimama-creative/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a href='https://huggingface.co/alimama-creative/PosterMaker'><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
 
 
 <img src="https://github.com/alimama-creative/FLUX-Controlnet-Inpainting/blob/main/images/alibabaalimama.png" height=80>
@@ -106,7 +106,7 @@ Finally, the generated images will be saved in `./images/results/`.
 ## Known Limitations
 The current model exhibits the following known limitations stemming from processing strategies applied to textual elements and captions during constructing our training dataset:
 
-**Text:** 
+**Text** 
 - During training, we restrict texts to 7 lines of up to 16 characters each, and the same applies during inference.
 - The training data comes from e-commerce platforms, resulting in relatively simple text colors and font styles with limited design diversity. This leads to similarly simple styles in the inference outputs.
 
