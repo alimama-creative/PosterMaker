@@ -15,13 +15,14 @@
 
 
 ## 🎉 News/Update
-- [2025.04.18] Inference Code & Model Weights has been released
+- [2025.04.18] Inference Code & Model Weights has been released!
 - [2025.04.10] PosterMaker is Accepted by CVPR 2025!
 
 
 ## ⏰ Release Schedule Announcement
 
 [✅] **Inference Code & Demo**: Expected by ~~April 15th, 2025~~ April 18th, 2025
+
 [ ] **Training Code**: Expected by April 30th, 2025
 
 We are working diligently to ensure the quality of our releases. We greatly appreciate your continued interest and support in our project. Please stay tuned for these upcoming releases.
