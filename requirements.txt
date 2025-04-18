@@ -1,0 +1,13 @@
+torch==2.0.0
+torchvision==0.15.0
+tokenizers==0.19.1
+transformers==4.43.3
+diffusers==0.29.2
+opencv-python==4.5.4.60
+numpy==1.26.4
+accelerate==0.33.0
+sentencepiece==0.1.99
+# demo extra requirements
+gradio==4.44.1
+protobuf==3.20.1
+pydantic==2.7.3
