@@ -1,28 +1,28 @@
 <div align="center">
-<img src="asset/images/logo.png" height="80">
+<img src="assets/images/logo.png" height="80">
 
 # PosterMaker: Towards High-Quality Product Poster Generation with Accurate Text Rendering  [![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-md-dark.svg)](https://poster-maker.github.io)
 
-<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='asset/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/eafn/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
+<a href='https://arxiv.org/abs/2504.06632'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='assets/pdfs/CVPR2025_Arxiv.pdf'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> <a href='https://github.com/eafn/PosterMaker'><img src='https://img.shields.io/badge/Code-Github-green'></a> <a><img src='https://img.shields.io/badge/Demo-HuggingFace-yellow'></a>
 
 
 <img src="https://github.com/alimama-creative/FLUX-Controlnet-Inpainting/blob/main/images/alibabaalimama.png" height=80>
 
 **PosterMaker** is supported by the [Alimama Creative](https://huggingface.co/alimama-creative) team. 
 
-![sample](asset/images/tesear.png "sample")
+![sample](assets/images/tesear.png "sample")
 </div>
 
 
 ## 🎉 News/Update
-
+- [2025.04.18] Inference Code & Model Weights has been released
 - [2025.04.10] PosterMaker is Accepted by CVPR 2025!
 
 
 ## ⏰ Release Schedule Announcement
 
-- [✅] **Inference Code & Demo**: Expected by ~~April 15th, 2025~~ April 18th, 2025
-- [ ] **Training Code**: Expected by April 30th, 2025
+[✅] **Inference Code & Demo**: Expected by ~~April 15th, 2025~~ April 18th, 2025
+[ ] **Training Code**: Expected by April 30th, 2025
 
 We are working diligently to ensure the quality of our releases. We greatly appreciate your continued interest and support in our project. Please stay tuned for these upcoming releases.
 
