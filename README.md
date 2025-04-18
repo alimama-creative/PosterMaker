@@ -106,7 +106,10 @@ Finally, the generated images will be saved in `./images/results/`.
 ## Known Limitations
 The current model exhibits the following known limitations stemming from processing strategies applied to textual elements and captions during constructing our training dataset:
 
-**Text:** During training, we restrict texts to 7 lines of up to 16 characters each, and the same applies during inference.
+**Text:** 
+- During training, we restrict texts to 7 lines of up to 16 characters each, and the same applies during inference.
+- The training data comes from e-commerce platforms, resulting in relatively simple text colors and font styles with limited design diversity. This leads to similarly simple styles in the inference outputs.
+
 
 **Layout**
 - Only horizontal text boxes are supported (since the amount of vertical text boxes was insufficient, we excluded them from training data)
