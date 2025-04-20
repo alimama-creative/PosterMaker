@@ -59,7 +59,7 @@ Finally, the folder structure is as follows:
 ```bash
 .
 ├── checkpoints
-│   ├── stable-diffusion-3-medium
+│   ├── stable-diffusion-3-medium-diffusers
 │   └── our_weights
 ├── models
 ├── pipelines
