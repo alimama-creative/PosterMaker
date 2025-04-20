@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ```
 
 ## Model Preparation
-Download the SD3 weights from [HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3-medium) to `./checkpoints/stable-diffusion-3-medium`
+Download the SD3 weights from [HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers) to `./checkpoints/stable-diffusion-3-medium-diffusers`
 
 Download the PosterMaker weights from [HuggingFace](https://huggingface.co/alimama-creative/PosterMaker) to `./checkpoints/our_weights`
 
@@ -95,7 +95,7 @@ The following command is used to generate images.
 **Example Command**:
 ```bash
 python inference.py \
---pretrained_model_name_or_path='./checkpoints/our_weights/stable-diffusion-3-medium-diffusers/' \
+--pretrained_model_name_or_path='./checkpoints/stable-diffusion-3-medium-diffusers/' \
 --controlnet_model_name_or_path='./checkpoints/our_weights/scenegen_net-rl-0415.pth' \
 --controlnet_model_name_or_path2='./checkpoints/our_weights/textrender_net-0415.pth' \
 --seed=42 \
