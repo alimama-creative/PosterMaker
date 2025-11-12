@@ -1,7 +1,13 @@
+import os
+import math
+from typing import List, Dict, Callable
+
 from PIL import Image
 import numpy as np
 import cv2
+
 import torch
+import Levenshtein
 
 # x1,y1,x2,y2 -> x1,y1,w,h
 def pos2coords(pos):
@@ -211,3 +217,165 @@ def post_process(image, target_size):
     crop_rel = image.crop((0, 0, im_w, im_h))
     
     return crop_rel
+
+
+def read_im(path, root=''):
+    img_dir = os.path.join(root, path)
+    try:
+        img = cv2.imread(img_dir)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  #bgr -> rgb
+    except:
+        print(f"image read error: {img_dir}")
+        img = None
+
+    return img
+
+
+def sort_texts_by_pos(texts):
+    """
+    对texts的列表进行排序，依据是pos中的x1, y1, x2, y2依次进行排序
+    """
+    try:
+        # 使用sorted函数进行排序，key参数用于指定排序依据
+        sorted_texts = sorted(texts, key=lambda x: (x['pos'][0], x['pos'][1], x['pos'][2], x['pos'][3]))
+        return sorted_texts
+    except Exception as e:
+        print(e)
+        return None
+
+
+def copy_text_to_bg(poster_im, gt_im, texts):
+    for text in texts:
+        x1, y1, x2, y2 = text['pos']
+        gt_im[y1:y2, x1:x2, :] = poster_im[y1:y2, x1:x2, :].copy()
+    return gt_im
+
+def mask_image_by_texts(im, texts, mask_value=0):
+    im_mask = im.copy()
+    for text in texts:
+        x1, y1, x2, y2 = text['pos']
+        if im_mask.ndim == 2:  # 灰度图像
+            im_mask[y1:y2, x1:x2] = mask_value
+        else:  # RGB或其他有多个通道的图像
+            im_mask[y1:y2, x1:x2, ...] = mask_value
+
+    return im_mask
+
+def mask_image_by_logos(im, logos, mask_value=0):
+    im_mask = im.copy()
+    for logo in logos:
+        x1, y1, x2, y2 = logo
+        if im_mask.ndim == 2:  # 灰度图像
+            im_mask[y1:y2, x1:x2] = mask_value
+        else:  # RGB或其他有多个通道的图像
+            im_mask[y1:y2, x1:x2, ...] = mask_value
+
+    return im_mask
+
+def check_and_create_directory(directory_path):
+    # 如果文件夹存在
+    if not os.path.isdir(directory_path):
+        os.makedirs(directory_path, exist_ok=True)
+
+
+def full_to_half_width(s):
+    n = []
+    for char in s:
+        code = ord(char)
+        # 处理全角字符（除空格）编码范围
+        if 0xFF01 <= code <= 0xFF5E:
+            code -= 0xFEE0
+        # 处理全角空格（占两个字符位置）
+        elif code == 0x3000:
+            code = 0x0020
+        # 处理全角双引号
+        elif code == 0x201C:  # “
+            code = 0x0022
+        elif code == 0x201D:  # ”
+            code = 0x0022
+        n.append(chr(code))
+    return ''.join(n)
+
+
+def get_ld(ls1, ls2):
+    edit_dist = Levenshtein.distance(ls1, ls2)
+    return 1 - edit_dist/(max(len(ls1), len(ls2)) + 1e-5)
+
+
+def pre_process(img_list, shape):
+    numpy_list = []
+    img_num = len(img_list)
+    assert img_num > 0
+    for idx in range(0, img_num):
+        # rotate
+        img = img_list[idx]
+        h, w = img.shape[1:]
+        if h > w * 1.2:
+            img = torch.transpose(img, 1, 2).flip(dims=[1])
+            img_list[idx] = img
+            h, w = img.shape[1:]
+        # resize
+        imgC, imgH, imgW = (int(i) for i in shape.strip().split(','))
+        assert imgC == img.shape[0]
+        ratio = w / float(h)
+        if math.ceil(imgH * ratio) > imgW:
+            resized_w = imgW
+        else:
+            resized_w = int(math.ceil(imgH * ratio))
+        resized_image = torch.nn.functional.interpolate(
+            img.unsqueeze(0),
+            size=(imgH, resized_w),
+            mode='bilinear',
+            align_corners=True,
+        )
+        # padding
+        padding_im = torch.zeros((imgC, imgH, imgW), dtype=torch.float32)
+        padding_im[:, :, 0:resized_w] = resized_image[0]
+        numpy_list += [padding_im.permute(1, 2, 0).cpu().numpy()]  # HWC ,numpy
+    return numpy_list
+
+
+def check_layout(pos: list, content: str, poslist: list, url: str) -> bool:
+    if not url and  not content:
+        return False
+    
+    h = abs(pos[1]-pos[3])
+    w = abs(pos[0]-pos[2])
+    len_text = len(content)
+    num_text = len(poslist)
+    
+    return 0 <= pos[0] and 0 <= pos[1] and w >= h and h >= 20 and len_text <= 16
+
+
+def filter_samples(samples: List[Dict],
+                   check_layout: Callable[[list, str, list, str], bool]
+                  ) -> List[Dict]:
+    """
+    Args:
+        samples: List[dict]，每个dict格式参考你的描述
+        check_layout: 一个函数，签名为 (pos, content, poslist, url) -> bool
+
+    Returns:
+        new_samples: 过滤后的samples（list of dict），只保留texts非空项
+    """
+    filtered_samples = []
+    for sample in samples:
+        texts_keep = []
+        texts_del = []
+        texts = sample.get('texts', [])
+        poslist = [t['pos'] for t in texts]
+        url = sample.get('url', "")
+        for text in texts:
+            pos = text['pos']
+            content = text['content']
+            if check_layout(pos=pos, content=content, poslist=poslist, url=url):
+                texts_keep.append(text)
+            else:
+                texts_del.append(text)
+        if texts_keep:  # 只保留有剩余texts的sample
+            sample_new = dict(sample)  # 浅拷贝以免影响原数据
+            sample_new['texts'] = texts_keep
+            sample_new['texts_out'] = texts_del if texts_del else None
+            filtered_samples.append(sample_new)
+            
+    return filtered_samples

@@ -103,6 +103,38 @@ python inference.py \
 ```
 Finally, the generated images will be saved in `./images/results/`.
 
+## Training
+To train the model, please refer to `train.sh`.
+
+You first need to download the data and extract it to the specified location `./dataset`  
+
+The paths to training and validation data can be modified in `poster_dataset_e2e_train.py: Line 16`:
+```python
+GT_IM_SAVE_PATH = './dataset/cvpr25_training_dataset_release/images/gt/'
+SUBJECT_MASK_SAVE_PATH = './dataset/cvpr25_training_dataset_release/images/mask/'
+DATA_SAMPLES_PATH = './dataset/cvpr25_training_dataset_release/cvpr_training_data.json'
+```
+
+The validation paths can be modified in `poster_dataset_e2e_eval.py: Line 15`.  
+Please note that validation data for stage 1 and stage 2 are different:
+```python
+# stage2 eval
+STAGE2_GT_IM_SAVE_PATH = './dataset/cvpr25_release_benchmark_stage2/gt/'
+STAGE2_SUBJECT_MASK_SAVE_PATH = './dataset/cvpr25_release_benchmark_stage2/mask/'
+STAGE2_DATA_SAMPLES_PATH = './dataset/cvpr25_release_benchmark_stage2/text_render_benchmark.json'
+
+# stage1 eval
+STAGE1_GT_IM_SAVE_PATH = './dataset/cvpr25_release_benchmark_stage1/gt/'
+STAGE1_SUBJECT_MASK_SAVE_PATH = './dataset/cvpr25_release_benchmark_stage1/mask/'
+STAGE1_DATA_SAMPLES_PATH = './dataset/cvpr25_release_benchmark_stage1/text_render_benchmark.json'
+```
+
+Reference commands for starting training can be found in `train.sh`.  
+Please adjust the batch size and number of GPUs according to your environment.  
+We recommend using 32 A100 GPUs for training.
+
+
+
 ## Known Limitations
 The current model exhibits the following known limitations stemming from processing strategies applied to textual elements and captions during constructing our training dataset:
 
