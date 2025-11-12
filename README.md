@@ -107,7 +107,7 @@ Finally, the generated images will be saved in `./images/results/`.
 ## Training
 To train the model, please refer to `train.sh`.
 
-You first need to download the data and extract it to the specified location `./dataset`  
+You first need to extract your data to the specified location `./dataset`  
 
 The paths to training and validation data can be modified in `poster_dataset_e2e_train.py: Line 16`:
 ```python
